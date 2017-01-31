@@ -76,11 +76,11 @@ describe("globUtil", () => {
             const patterns = ["one-js-file"];
             const opts = {
                 cwd: getFixturePath("glob-util"),
-                extensions: [".jsx"]
+                extensions: ["_js.resource"]
             };
             const result = globUtil.resolveFileGlobPatterns(patterns, opts);
 
-            assert.deepEqual(result, ["one-js-file/**/*.jsx"]);
+            assert.deepEqual(result, ["one-js-file/**/*_js.resource"]);
         });
 
         it("should convert a directory name with multiple provided extensions into a glob pattern", () => {
@@ -91,7 +91,7 @@ describe("globUtil", () => {
             };
             const result = globUtil.resolveFileGlobPatterns(patterns, opts);
 
-            assert.deepEqual(result, ["one-js-file/**/*.{jsx,js}"]);
+            assert.deepEqual(result, ["one-js-file/**/*{.jsx,.js}"]);
         });
 
         it("should convert multiple directory names into glob patterns", () => {
